@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    {%load static%}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desatornillador - Ferremas</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+    <div id="header">
+        <h1 class="title">Ferremas</h1>
+    </div>
+
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="productos.html">Productos</a>
+        <a href="login.html">Iniciar Sesión</a>
+    </nav>
+
+    <div id="product-details">
+        <div class="product-image">
+            <img src="{% static 'img/imagen3.jpg' %}"" alt="Desatornillador">
+        </div>
+
+        <div class="product-info">
+            <h2>Desatornillador</h2>
+            <p class="price">$8,000 CLP</p>
+            <p class="quantity">Cantidad: 30 unidades</p>
+            <p class="description">Este desatornillador es perfecto para aflojar o apretar tornillos en tus proyectos de bricolaje. Tiene una punta magnética que facilita la manipulación de los tornillos. ¡Agrega este desatornillador a tu caja de herramientas hoy mismo!</p>
+            <button class="add-to-cart">Agregar al carrito</button>
+        </div>
+    </div>
+
+    <script src="{% static 'script.js' %}"></script>
+</body>
+
+</html>

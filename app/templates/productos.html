@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    {%load static%}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - Ferremas</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div id="header">
+        <h1 class="title">Ferremas</h1>
+    </div>
+
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="productos.html">Productos</a>
+        <a href="login.html">Iniciar Sesión</a>
+    </nav>
+
+    <div id="product-container">
+        <div class="product-card">
+            <a href="producto1.html">
+                <img src="{% static 'img/imagen1.jpg' %}" alt="Martillo">
+            </a>
+            <div class="product-info">
+                <h2>Martillo</h2>
+                <p>Precio: $10,000 CLP</p>
+                <p>Cantidad: 20 unidades</p>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <a href="producto2.html">
+                <img src="{% static 'img/imagen2.jpg' %}" alt="Serrucho">
+            </a>
+            <div class="product-info">
+                <h2>Serrucho</h2>
+                <p>Precio: $15,000 CLP</p>
+                <p>Cantidad: 15 unidades</p>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <a href="producto3.html">
+                <img src="{% static 'img/imagen3.jpg' %}" alt="Desatornillador">
+            </a>
+            <div class="product-info">
+                <h2>Desatornillador</h2>
+                <p>Precio: $8,000 CLP</p>
+                <p>Cantidad: 25 unidades</p>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

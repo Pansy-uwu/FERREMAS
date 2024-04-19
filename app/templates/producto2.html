@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    {%load static%}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serrucho - Ferremas</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+    <div id="header">
+        <h1 class="title">Ferremas</h1>
+    </div>
+
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="productos.html">Productos</a>
+        <a href="login.html">Iniciar Sesión</a>
+    </nav>
+
+    <div id="product-details">
+        <div class="product-image">
+            <img src="{% static 'img/imagen2.jpg' %}" alt="Serrucho">
+        </div>
+
+        <div class="product-info">
+            <h2>Serrucho</h2>
+            <p class="price">$15,000 CLP</p>
+            <p class="quantity">Cantidad: 15 unidades</p>
+            <p class="description">Este serrucho de alta calidad tiene una hoja afilada y resistente que te permitirá realizar cortes precisos en madera. Su mango ergonómico proporciona un agarre cómodo y seguro. ¡Agrega este serrucho a tu caja de herramientas hoy mismo!</p>
+            <button class="add-to-cart">Agregar al carrito</button>
+        </div>
+    </div>
+
+    <script src="{% static 'script.js' %}"></script>
+</body>
+
+</html>

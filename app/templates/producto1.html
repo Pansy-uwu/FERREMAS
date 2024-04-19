@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    {%load static%}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Martillo - Ferremas</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+    <div id="header">
+        <h1 class="title">Ferremas</h1>
+    </div>
+
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="productos.html">Productos</a>
+        <a href="login.html">Iniciar Sesión</a>
+    </nav>
+
+    <div id="product-details">
+        <div class="product-image">
+            <img src="{% static 'img/imagen1.jpg' %}" alt="Martillo">
+        </div>
+
+        <div class="product-info">
+            <h2>Martillo</h2>
+            <p class="price">$10,000 CLP</p>
+            <p class="quantity">Cantidad: 20 unidades</p>
+            <p class="description">Este martillo de alta calidad es perfecto para tus proyectos de construcción y bricolaje. Está hecho de acero resistente y su mango ergonómico te brinda un agarre cómodo. ¡Agrega este martillo a tu caja de herramientas hoy mismo!</p>
+            <button class="add-to-cart">Agregar al carrito</button>
+        </div>
+    </div>
+
+    <script src="{% static 'script.js' %}"></script>
+</body>
+
+</html>
