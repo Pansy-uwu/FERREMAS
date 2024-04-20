@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ferremas - Tienda Online de Herramientas de Construcción</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
-    <script src="{% static 'script.js' %}"></script>
+<script src="{% static 'script.js' %}"></script>
 </head>
 <body>
     <div id="header">
@@ -20,15 +20,22 @@
         <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
     </nav>
 
-    <h2>Register</h2>
+
+    <h2>Login</h2>
     <form method="post">
         {% csrf_token %}
-        <!-- Agrega los campos del formulario de registro -->
+        <!-- Agrega los campos del formulario de login -->
         <input type="text" name="username" placeholder="Username" required><br>
-        <input type="email" name="email" placeholder="Email" required><br>
         <input type="password" name="password" placeholder="Password" required><br>
-        <button type="submit">Register</button>
+        <button type="submit">Login</button>
     </form>
+        <a class="nav-link" href="{% url 'register' %}">registrate <span class="sr-only"></span></a>
+        <a class="nav-link" href="{% url 'admin' %}">admin <span class="sr-only"></span></a>
+        <a class="nav-link" href="{% url 'cliente' %}">cliente <span class="sr-only"></span></a>
+        <a class="nav-link" href="{% url 'bodeguero' %}">bodeguero <span class="sr-only"></span></a>
+        <a class="nav-link" href="{% url 'vendedor' %}">vendedor <span class="sr-only"></span></a>
+        <a class="nav-link" href="{% url 'contador' %}">contador <span class="sr-only"></span></a>
+
 </body>
 
 </html>

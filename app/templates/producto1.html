@@ -14,10 +14,10 @@
     </div>
 
     <nav>
-        <a href="index.html">Inicio</a>
-        <a href="nosotros.html">Nosotros</a>
-        <a href="productos.html">Productos</a>
-        <a href="login.html">Iniciar Sesión</a>
+        <a class="nav-link" href="{% url 'index' %}">Inicio <span class="sr-only"></span></a>
+        <a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a>
+        <a class="nav-link" href="{% url 'productos' %}">Productos</a>
+        <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
     </nav>
 
     <div id="product-details">

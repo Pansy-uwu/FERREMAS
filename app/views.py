@@ -34,3 +34,23 @@ def productos(request):
 def register(request):
     context={}
     return render(request, 'register.html', context)
+
+def admin(request):
+    context={}
+    return render(request, 'vistas/admin/admin.html', context)
+
+def bodeguero(request):
+    context={}
+    return render(request, 'vistas/bodeguero/bodeguero.html', context)
+
+def cliente(request):
+    context={}
+    return render(request, 'vistas/cliente/cliente.html')
+
+def contador(request):
+    context={}
+    return render(request, 'vistas/contador/contador.html', context)
+
+def vendedor(request):
+    context={}
+    return render(request, 'vistas/vendedor/vendedor.html', context)

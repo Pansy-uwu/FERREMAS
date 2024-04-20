@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferremas - Tienda Online de Herramientas de Construcción</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="{% static 'script.js' %}"></script>
+</head>
+<body>
+    <div id="header">
+        <h1 class="title">Ferremas</h1>
+    </div>
+
+    <nav>
+        <!-- Enlaces de navegación -->
+    </nav>
+
+    <div id="vendedor">
+        <h2>Panel de Vendedor</h2>
+
+        <div class="section-container">
+            <h3>Productos disponibles en bodega</h3>
+            <ul>
+                <li>Martillos (Cantidad: 10)</li>
+                <li>Serruchos (Cantidad: 5)</li>
+                <li>Desatornilladores (Cantidad: 8)</li>
+            </ul>
+        </div>
+
+        <div class="section-container">
+            <h3>Pedidos pendientes</h3>
+            <div class="pedido-container">
+                <p>Pedido 1: Martillos (Cantidad: 2)</p>
+                <button class="aprobar-btn">Aprobar</button>
+                <button class="rechazar-btn">Rechazar</button>
+            </div>
+
+            <div class="pedido-container">
+                <p>Pedido 2: Serruchos (Cantidad: 3)</p>
+                <button class="aprobar-btn">Aprobar</button>
+                <button class="rechazar-btn">Rechazar</button>            
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h3>Ordenes a bodegueros</h3>
+            <textarea id="comentarios" placeholder="Comentarios"></textarea>
+            <button id="enviar-btn">Enviar</button>
+        </div>
+
+        <div class="section-container">
+            <h3>Organizar despacho a clientes</h3>
+            <textarea id="comentarios" placeholder="Comentarios"></textarea>
+            <button id="enviar-btn">Enviar</button>
+        </div>
+    </div>
+</body>
+</html>

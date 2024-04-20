@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    {%load static%}
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,46 +13,62 @@
     </div>
 
     <nav>
-        <a href="index.html">Inicio</a>
-        <a href="nosotros.html">Nosotros</a>
-        <a href="productos.html">Productos</a>
-        <a href="login.html">Iniciar Sesión</a>
+        <a class="nav-link" href="{% url 'index' %}">Inicio <span class="sr-only"></span></a>
+        <a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a>
+        <a class="nav-link" href="{% url 'productos' %}">Productos</a>
+        <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
     </nav>
 
     <div id="product-container">
         <div class="product-card">
-            <a href="producto1.html">
-                <img src="{% static 'img/imagen1.jpg' %}" alt="Martillo">
-            </a>
+            <a href="{% url 'producto1' %}"><img src="{% static 'img/imagen1.jpg' %}" alt="Martillo"></a>
             <div class="product-info">
                 <h2>Martillo</h2>
                 <p>Precio: $10,000 CLP</p>
                 <p>Cantidad: 20 unidades</p>
+                <input type="number" id="martillo-quantity" value="0">
+                <button onclick="addToCart('Martillo', 10000, 'martillo-quantity')">Agregar al carrito</button>
             </div>
         </div>
 
         <div class="product-card">
-            <a href="producto2.html">
-                <img src="{% static 'img/imagen2.jpg' %}" alt="Serrucho">
-            </a>
+            <a href="{% url 'producto2' %}"><img src="{% static 'img/imagen2.jpg' %}" alt="Serrucho"></a>
             <div class="product-info">
                 <h2>Serrucho</h2>
                 <p>Precio: $15,000 CLP</p>
                 <p>Cantidad: 15 unidades</p>
+                <input type="number" id="serrucho-quantity" value="0">
+                <button onclick="addToCart('Serrucho', 15000, 'serrucho-quantity')">Agregar al carrito</button>
             </div>
         </div>
 
         <div class="product-card">
-            <a href="producto3.html">
-                <img src="{% static 'img/imagen3.jpg' %}" alt="Desatornillador">
-            </a>
+            <a href="{% url 'producto3' %}"><img src="{% static 'img/imagen3.jpg' %}" alt="Desatornillador"></a>
             <div class="product-info">
                 <h2>Desatornillador</h2>
                 <p>Precio: $8,000 CLP</p>
                 <p>Cantidad: 25 unidades</p>
+                <input type="number" id="desatornillador-quantity" value="0">
+                <button onclick="addToCart('Desatornillador', 8000, 'desatornillador-quantity')">Agregar al carrito</button>
             </div>
         </div>
     </div>
-    
+
+    <h2>Carrito</h2>
+    <div id="cart">No hay productos en el carrito</div>
+    <div id="opciones-envio">
+        <h2>Opciones de envío</h2>
+        <input type="radio" name="envio" value="tienda"> Retiro en tienda<br>
+        <input type="radio" name="envio" value="domicilio"> Despacho a domicilio<br>
+    </div>
+
+    <div id="opciones-pago">
+        <h2>Opciones de pago</h2>
+        <input type="radio" name="pago" value="debito"> Débito<br>
+        <input type="radio" name="pago" value="credito"> Crédito<br>
+        <input type="radio" name="pago" value="transferencia"> Transferencia<br>
+    </div>
+
+    <script src="{% static 'script.js' %}"></script>
 </body>
 </html>
