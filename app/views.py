@@ -1,5 +1,14 @@
 from django.shortcuts import render
-from django.contrib import admin
+import requests
+
+from django.http import JsonResponse
+from .api import Mindicador
+
+def get_dolar_price(request):
+    mindicador = Mindicador('dolar', 2024)
+    dolar_price = mindicador.get_dolar_price()
+    return JsonResponse({'dolar_price': dolar_price})
+
 
 # Create your views here.
 

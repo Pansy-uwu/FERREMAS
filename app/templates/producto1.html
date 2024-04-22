@@ -30,11 +30,44 @@
             <p class="price">$10,000 CLP</p>
             <p class="quantity">Cantidad: 20 unidades</p>
             <p class="description">Este martillo de alta calidad es perfecto para tus proyectos de construcción y bricolaje. Está hecho de acero resistente y su mango ergonómico te brinda un agarre cómodo. ¡Agrega este martillo a tu caja de herramientas hoy mismo!</p>
-            <button class="add-to-cart">Agregar al carrito</button>
-        </div>
+            
+            <div id="product-details">
+                <!-- Otros detalles del producto -->
+            
+                <p class="price">Precio en dólares: <span id="product-price-usd"></span></p>
+
+            </div>
+            
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    // Realiza una solicitud AJAX para obtener el precio del dólar
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "{% url 'get_dolar_price' %}", true);
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            var response = JSON.parse(xhr.responseText);
+                            var dolarPrice = response.dolar_price;
+            
+                            // Obtiene el precio del producto en pesos chilenos desde el HTML
+                            var clpPrice = parseFloat(document.querySelector('.price').textContent.replace('$', '').replace(' CLP', '').replace(',', ''));
+                            
+                            // Calcula el precio del producto en dólares
+                            var usdPrice = clpPrice / dolarPrice;
+            
+                            // Actualiza el elemento HTML con el precio en dólares
+                            document.getElementById("product-price-usd").innerText = usdPrice.toFixed(2) + " USD";
+                        }
+                    };
+                    xhr.send();
+                });
+            </script>
+            
+            
+        
+    </div>
     </div>
 
-    <script src="{% static 'script.js' %}"></script>
+
 </body>
 
 </html>

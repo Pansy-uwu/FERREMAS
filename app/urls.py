@@ -15,4 +15,5 @@ urlpatterns = [
     path('cliente/', views.cliente, name='cliente'),
     path('contador/', views.contador, name='contador'), 
     path('vendedor/', views.vendedor, name='vendedor'),  
+    path('get_dolar_price/', views.get_dolar_price, name='get_dolar_price'),
 ]
