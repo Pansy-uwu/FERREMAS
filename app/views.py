@@ -1,8 +1,8 @@
 from django.shortcuts import render
 import requests
-
-from django.http import JsonResponse
 from .api import Mindicador
+from django.http import JsonResponse
+
 
 def get_dolar_price(request):
     mindicador = Mindicador('dolar', 2024)
