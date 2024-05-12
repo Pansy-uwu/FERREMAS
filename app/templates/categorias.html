@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Categorías</title>
+</head>
+<body>
+    <h1>Categorías</h1>
+    <ul>
+        {% for categoria in categorias %}
+            <li>{{ categoria.Nombre }}</li>
+            {% if categoria.Productos %}
+                <ul>
+                    {% for producto in categoria.Productos %}
+                        <li>{{ producto.Nombre }} - {{ producto.Marca }} - {{ producto.Código }}</li>
+                    {% endfor %}
+                </ul>
+            {% elif categoria.Subcategorias %}
+                <ul>
+                    {% for subcategoria in categoria.Subcategorias %}
+                        <li>{{ subcategoria.Nombre }}</li>
+                        <ul>  <!-- El bucle for debe comenzar aquí -->
+                            {% for producto in subcategoria.Productos %}
+                                <li>{{ producto.Nombre }} - {{ producto.Marca }} - {{ producto.Código }}</li>
+                            {% endfor %}
+                        </ul>  <!-- El bucle for debe terminar aquí -->
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</body>
+</html>
+

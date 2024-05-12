@@ -2,6 +2,8 @@ from django.shortcuts import render
 import requests
 from .api import Mindicador
 from django.http import JsonResponse
+import json
+import os
 
 
 def get_dolar_price(request):
@@ -9,6 +11,12 @@ def get_dolar_price(request):
     dolar_price = mindicador.get_dolar_price()
     return JsonResponse({'dolar_price': dolar_price})
 
+def mostrar_categorias(request):
+    json_path = os.path.abspath('app/categorias.json')
+    with open(json_path) as f:
+        categorias = json.load(f)
+        print(categorias)  # Imprimir el contenido del JSON
+    return render(request, 'categorias.html', {'categorias': categorias})
 
 # Create your views here.
 

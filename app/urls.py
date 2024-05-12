@@ -16,4 +16,6 @@ urlpatterns = [
     path('contador/', views.contador, name='contador'), 
     path('vendedor/', views.vendedor, name='vendedor'),  
     path('get_dolar_price/', views.get_dolar_price, name='get_dolar_price'),
+    path('categorias/', views.mostrar_categorias, name='mostrar_categorias'),
 ]
+
