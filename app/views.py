@@ -7,19 +7,16 @@ import json
 import os
 from transbank.webpay.webpay_plus.transaction import Transaction, WebpayOptions
 from transbank.common.integration_type import IntegrationType
+from .apisimple import get_data
+
+def mostrar_datos(request):
+    datos = get_data('')  # Reemplaza 'endpoint' con el endpoint real que quieras usar
+    return render(request, 'mostrar_datos.html', {'datos': datos})
 
 def get_dolar_price(request):
     mindicador = Mindicador('dolar', 2024)
     dolar_price = mindicador.get_dolar_price()
     return JsonResponse({'dolar_price': dolar_price})
-
-def mostrar_categorias(request):
-    json_path = os.path.abspath('app/categorias.json')
-    with open(json_path) as f:
-        categorias = json.load(f)
-        print(categorias)  # Imprimir el contenido del JSON
-    return render(request, 'categorias.html', {'categorias': categorias})
-
 # Create your views here.
 
 def index(request):
