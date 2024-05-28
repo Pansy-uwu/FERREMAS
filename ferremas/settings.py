@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-x3jla=!h#d1nsk7!vyb9!fg8(2k-r_xwp@ul8sck1gae1jv3&$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+
 
 
 # Application definition
@@ -117,9 +118,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+WEBPAY = {
+    'COMMERCE_CODE': '597055555532',
+    'API_KEY': 'Your-API-Key',
+    'ENVIRONMENT': 'INTEGRATION',  # Usar 'PRODUCTION' para el entorno real
+}

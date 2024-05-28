@@ -55,20 +55,75 @@
     </div>
 
     <h2>Carrito</h2>
-    <div id="cart">No hay productos en el carrito</div>
+    <div id="cart">
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="carrito-items">
+                <!-- Los productos del carrito se agregarán aquí -->
+            </tbody>
+        </table>
+        <p>Total del Carrito: <span id="monto-total">0</span> CLP</p>
+        <button onclick="pagar()">Pagar</button>
+    </div>
+    
     <div id="opciones-envio">
         <h2>Opciones de envío</h2>
         <input type="radio" name="envio" value="tienda"> Retiro en tienda<br>
         <input type="radio" name="envio" value="domicilio"> Despacho a domicilio<br>
     </div>
 
-    <div id="opciones-pago">
-        <h2>Opciones de pago</h2>
-        <input type="radio" name="pago" value="debito"> Débito<br>
-        <input type="radio" name="pago" value="credito"> Crédito<br>
-        <input type="radio" name="pago" value="transferencia"> Transferencia<br>
-    </div>
+    <script>
+        let cart = [];
 
-    <script src="{% static 'script.js' %}"></script>
+        function addToCart(name, price, quantityId) {
+            const quantity = parseInt(document.getElementById(quantityId).value);
+            if (quantity > 0) {
+                cart.push({ name, price, quantity });
+                displayCart();
+            }
+        }
+
+        function displayCart() {
+            const cartItems = document.getElementById('carrito-items');
+            cartItems.innerHTML = '';
+            let total = 0;
+            cart.forEach(item => {
+                const totalItem = item.price * item.quantity;
+                total += totalItem;
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.name}</td>
+                    <td>${item.quantity}</td>
+                    <td>${item.price.toFixed(2)}</td>
+                    <td>${totalItem.toFixed(2)}</td>
+                `;
+                cartItems.appendChild(row);
+            });
+            document.getElementById('monto-total').textContent = total.toFixed(2);
+        }
+
+        function pagar() {
+            const montoTotal = document.getElementById('monto-total').textContent;
+            fetch('/app/webpay/init_post/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({ monto: montoTotal })
+            })
+            .then(response => response.json())
+            .then(data => {
+                window.location.href = data.url;
+            });
+        }
+    </script>
 </body>
 </html>
