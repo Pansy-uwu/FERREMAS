@@ -9,6 +9,7 @@ from transbank.webpay.webpay_plus.transaction import Transaction, WebpayOptions
 from transbank.common.integration_type import IntegrationType
 from .apisimple import get_data
 from django.contrib.auth import authenticate, login
+from django.contrib import messages
 
 
 def mostrar_datos(request):
@@ -112,4 +113,14 @@ def commit_transaction(request):
         return render(request, 'failure.html', {'response': response})
     
 
-
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')  # Redirige a la página principal después de iniciar sesión correctamente
+        else:
+            messages.error(request, 'Usuario o contraseña incorrectos')
+    return render(request, 'login.html')

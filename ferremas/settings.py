@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-x3jla=!h#d1nsk7!vyb9!fg8(2k-r_xwp@ul8sck1gae1jv3&$
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 
-ALLOWED_HOSTS = ['ferremas-uhp7.onrender.com']
+ALLOWED_HOSTS = ['ferremas-uhp7.onrender.com','*']
 
 
 
