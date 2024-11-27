@@ -7,15 +7,10 @@
     <title>Ferremas - Tienda Online de Herramientas de Construcción</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
 <script src="{% static 'script.js' %}"></script>
-
 </head>
 <body>
     <div id="header">
         <h1 class="title">Ferremas</h1>
-        <div class="result">
-            <!-- Puedes agregar más contenido inicial si lo deseas -->
-        </div>
-        
     </div>
 
     <nav>
@@ -25,26 +20,22 @@
         <a class="nav-link" href=" https://apisimple-9acb.onrender.com/">Api</a>
         {% if user.is_authenticated %}
             <a class="nav-link" href="{% url 'profile' %}">Mi perfil</a>
-         
+           
         {% else %}
              <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
         {% endif %}
     </nav>
 
-    <div id="carousel">
-        <div class="arrow arrow-left">
-            <span>&#10094;</span>
-        </div>
-        <div class="arrow arrow-right">
-            <span>&#10095;</span>
-        </div>
-        <div id="image-slider">
-            <img src="{% static 'img/imagen1.jpg' %}" alt="Producto 1">
-            <img src="{% static 'img/imagen2.jpg' %}" alt="Producto 2">
-            <img src="{% static 'img/imagen3.jpg' %}" alt="Producto 3">
-            <!-- Agrega más imágenes de productos aquí -->
-        </div>
-    </div>
-    <script src="{% static 'api.js' %}"></script>
+    <h1>Mi Perfil</h1>
+    <p><strong>Usuario:</strong> {{ username }}</p>
+    <p><strong>Email:</strong> {{ email }}</p>
+    <p><strong>Contraseña:</strong> (La contraseña está encriptada y no puede mostrarse)</p>
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Cerrar sesión</button>
+    </form>
+    
+
+
 </body>
 </html>

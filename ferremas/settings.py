@@ -25,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-x3jla=!h#d1nsk7!vyb9!fg8(2k-r_xwp@ul8sck1gae1jv3&$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 
-ALLOWED_HOSTS = ['ferremas-uhp7.onrender.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost','ferremas-uhp7.onrender.com']
 
 
 
@@ -146,7 +146,14 @@ WEBPAY = {
 
 
 
-SESSION_COOKIE_SECURE = True  # Cookies solo a través de HTTPS
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # La sesión expira al cerrar el navegador
-SESSION_COOKIE_HTTPONLY = True  # La cookie no es accesible desde JavaScript
-CSRF_COOKIE_SECURE = True
+
+# Cookies de sesión
+SESSION_COOKIE_SECURE = True  # No requiere HTTPS en desarrollo
+SESSION_COOKIE_HTTPONLY = True  # Evita el acceso a la cookie desde JavaScript
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # La sesión no expira al cerrar el navegador
+
+# CSRF
+CSRF_COOKIE_SECURE = True  # No requiere HTTPS en desarrollo
+
+
+LOGOUT_REDIRECT_URL = '/'  # Cambia '/' por la URL o el nombre de la ruta a la que quieras redirigir

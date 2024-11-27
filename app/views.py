@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 import requests
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 from .api import Mindicador
 from django.http import JsonResponse
 import json
@@ -10,6 +12,20 @@ from transbank.common.integration_type import IntegrationType
 from .apisimple import get_data
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
+from django.contrib.auth.models import User
+
+
+@login_required
+def profile_view(request):
+    return render(request, 'profile.html', {
+        'email': request.user.email,
+        'username': request.user.username,
+    })
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('index')  # Redirige al inicio tras cerrar sesión
 
 
 def mostrar_datos(request):
@@ -120,7 +136,21 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('home')  # Redirige a la página principal después de iniciar sesión correctamente
+            return redirect('index')  # Cambia 'index' si es necesario
         else:
             messages.error(request, 'Usuario o contraseña incorrectos')
-    return render(request, 'login.html')
+    return render(request, 'registration/login.html')  # Cambia a la ubicación actual
+
+
+def register(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        # Crear el usuario y guardarlo en la base de datos
+        user = User.objects.create_user(username=username, password=password, email=email)
+        user.save()
+
+        return redirect('login')  # Redirige a la página de login tras registrarse
+    return render(request, 'register.html')

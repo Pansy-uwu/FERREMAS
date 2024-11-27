@@ -17,12 +17,13 @@
         <a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a>
         <a class="nav-link" href="{% url 'productos' %}">Productos</a>
         <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+        <a class="nav-link" href="{% url 'register' %}">Registrate</a>
     </nav>
 
     <h2>Login</h2>
 
     <!-- Formulario de Login -->
-    <form id="login-form" method="post" action="{% url 'login_view' %}">
+    <form id="login-form" method="post" action="{% url 'login' %}">
         {% csrf_token %}
         <label for="username">Usuario:</label><br>
         <input type="text" id="username" name="username" placeholder="Ingresa tu usuario" required><br>
