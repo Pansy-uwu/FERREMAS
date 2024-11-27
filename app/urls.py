@@ -16,7 +16,7 @@ urlpatterns = [
     path('contador/', views.contador, name='contador'),
     path('vendedor/', views.vendedor, name='vendedor'),
     path('get_dolar_price/', views.get_dolar_price, name='get_dolar_price'),
-    path('categorias/', views.mostrar_categorias, name='mostrar_categorias'),
+
     path('webpay/init/', views.init_transaction, name='init_transaction'),
     path('webpay/init_post/', views.init_transaction_post, name='init_transaction_post'),
     path('webpay/commit/', views.commit_transaction, name='commit_transaction'),
