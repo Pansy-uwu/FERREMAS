@@ -1,3 +1,4 @@
 django==5.0.4
 flask
 transbank-sdk
+gunicorn
