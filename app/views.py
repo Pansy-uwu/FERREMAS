@@ -8,6 +8,8 @@ import os
 from transbank.webpay.webpay_plus.transaction import Transaction, WebpayOptions
 from transbank.common.integration_type import IntegrationType
 from .apisimple import get_data
+from django.contrib.auth import authenticate, login
+
 
 def mostrar_datos(request):
     datos = get_data('')  # Reemplaza 'endpoint' con el endpoint real que quieras usar
@@ -108,4 +110,36 @@ def commit_transaction(request):
         return render(request, 'success.html', context)
     else:
         return render(request, 'failure.html', {'response': response})
+    
 
+RECAPTCHA_PUBLIC_KEY = "6LdVEYwqAAAAAMcAzLL9SBNK4jmBRe8Zg2mW8onU"
+RECAPTCHA_PRIVATE_KEY = "6LdVEYwqAAAAAHcyEcM6TWTQGgIsS7KybGKrg9Jg"
+
+# Verificar reCAPTCHA
+def verify_recaptcha(token):
+    url = "https://www.google.com/recaptcha/api/siteverify"
+    secret_key = os.getenv("RECAPTCHA_PRIVATE_KEY", RECAPTCHA_PRIVATE_KEY)  # Usa la variable de entorno o clave fija
+    response = requests.post(url, data={"secret": secret_key, "response": token})
+    return response.json()
+
+# Vista del Login
+def login_view(request):
+    if request.method == "POST":
+        recaptcha_token = request.POST.get("recaptcha-token")  # Captura el token del formulario
+        verification_result = verify_recaptcha(recaptcha_token)
+
+        if not verification_result.get("success"):
+            return render(request, "login.html", {"error": "Captcha inválido"})
+
+        # Lógica de autenticación
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect("success")  # Cambia "success" por el nombre real de tu URL
+        else:
+            return render(request, "login.html", {"error": "Credenciales inválidas"})
+
+    return render(request, "login.html")

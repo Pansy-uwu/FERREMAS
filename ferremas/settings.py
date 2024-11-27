@@ -91,19 +91,12 @@ DATABASES = {
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
+
 
 
 # Internationalization
@@ -135,3 +128,23 @@ WEBPAY = {
     'API_KEY': 'Your-API-Key',
     'ENVIRONMENT': 'INTEGRATION',  # Usar 'PRODUCTION' para el entorno real
 }
+
+INSTALLED_APPS += ['axes']
+
+MIDDLEWARE += [
+    'axes.middleware.AxesMiddleware',
+]
+
+AXES_FAILURE_LIMIT = 5  # Máximo de intentos fallidos
+AXES_COOLOFF_TIME = 1  # Tiempo de bloqueo en horas
+
+
+# Configuración de reCAPTCHA
+RECAPTCHA_PUBLIC_KEY = os.getenv('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_PRIVATE_KEY')
+
+
+SESSION_COOKIE_SECURE = True  # Cookies solo a través de HTTPS
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # La sesión expira al cerrar el navegador
+SESSION_COOKIE_HTTPONLY = True  # La cookie no es accesible desde JavaScript
+CSRF_COOKIE_SECURE = True

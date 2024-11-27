@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-    {%load static%}
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ferremas - Tienda Online de Herramientas de Construcción</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
-<script src="{% static 'script.js' %}"></script>
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeUu4sqAAAAAMIVZdth4Kr490MsZZhTujSjU6mU"></script>
 </head>
 <body>
     <div id="header">
@@ -14,28 +14,43 @@
     </div>
 
     <nav>
-        <a class="nav-link" href="{% url 'index' %}">Inicio <span class="sr-only"></span></a>
+        <a class="nav-link" href="{% url 'index' %}">Inicio</a>
         <a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a>
         <a class="nav-link" href="{% url 'productos' %}">Productos</a>
         <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
     </nav>
 
-
     <h2>Login</h2>
-    <form method="post">
+
+    <!-- Formulario de Login -->
+    <form id="login-form" method="post" action="{% url 'login_view' %}">
         {% csrf_token %}
-        <!-- Agrega los campos del formulario de login -->
-        <input type="text" name="username" placeholder="Username" required><br>
-        <input type="password" name="password" placeholder="Password" required><br>
-        <button type="submit">Login</button>
+        <label for="username">Usuario:</label><br>
+        <input type="text" id="username" name="username" placeholder="Ingresa tu usuario" required><br>
+
+        <label for="password">Contraseña:</label><br>
+        <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required><br>
+
+        <!-- Campo oculto para el token reCAPTCHA -->
+        <input type="hidden" name="recaptcha-token" id="recaptcha-token">
+
+        <button type="button" onclick="onSubmit()">Login</button>
     </form>
-        <a class="nav-link" href="{% url 'register' %}">registrate <span class="sr-only"></span></a>
-        <a class="nav-link" href="{% url 'admin' %}">admin <span class="sr-only"></span></a>
-        <a class="nav-link" href="{% url 'cliente' %}">cliente <span class="sr-only"></span></a>
-        <a class="nav-link" href="{% url 'bodeguero' %}">bodeguero <span class="sr-only"></span></a>
-        <a class="nav-link" href="{% url 'vendedor' %}">vendedor <span class="sr-only"></span></a>
-        <a class="nav-link" href="{% url 'contador' %}">contador <span class="sr-only"></span></a>
 
+    <!-- Mensaje de error (si lo hay) -->
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <!-- Script para manejar reCAPTCHA -->
+    <script>
+        function onSubmit() {
+            grecaptcha.enterprise.ready(async () => {
+                const token = await grecaptcha.enterprise.execute('6LeUu4sqAAAAAMIVZdth4Kr490MsZZhTujSjU6mU', { action: 'LOGIN' });
+                document.getElementById('recaptcha-token').value = token;
+                document.getElementById('login-form').submit();
+            });
+        }
+    </script>
 </body>
-
 </html>
