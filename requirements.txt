@@ -4,3 +4,4 @@ transbank-sdk
 gunicorn
 django-axes
 django-recaptcha
+whitenoise
