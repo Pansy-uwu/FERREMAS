@@ -112,37 +112,4 @@ def commit_transaction(request):
         return render(request, 'failure.html', {'response': response})
     
 
-RECAPTCHA_PUBLIC_KEY = "6LdVEYwqAAAAAMcAzLL9SBNK4jmBRe8Zg2mW8onU"
-RECAPTCHA_PRIVATE_KEY = "6LdVEYwqAAAAAHcyEcM6TWTQGgIsS7KybGKrg9Jg"
 
-# Verificar reCAPTCHA
-def verify_recaptcha(token):
-    url = "https://www.google.com/recaptcha/api/siteverify"
-    secret_key = RECAPTCHA_PRIVATE_KEY
-    response = requests.post(url, data={"secret": secret_key, "response": token})
-    if response.status_code != 200:
-        print(f"Error en reCAPTCHA: {response.text}")  # Para depurar
-    return response.json()
-
-
-# Vista del Login
-def login_view(request):
-    if request.method == "POST":
-        recaptcha_token = request.POST.get("recaptcha-token")  # Captura el token del formulario
-        verification_result = verify_recaptcha(recaptcha_token)
-
-        if not verification_result.get("success"):
-            return render(request, "login.html", {"error": "Captcha inválido"})
-
-        # Lógica de autenticación
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            return redirect("index")  # Cambia por el nombre correcto de la URL
-        else:
-            return render(request, "login.html", {"error": "Credenciales inválidas"})
-
-    return render(request, "login.html")

@@ -154,10 +154,6 @@ AXES_FAILURE_LIMIT = 5  # Máximo de intentos fallidos
 AXES_COOLOFF_TIME = 1  # Tiempo de bloqueo en horas
 
 
-# Configuración de reCAPTCHA
-RECAPTCHA_PUBLIC_KEY = os.getenv('RECAPTCHA_PUBLIC_KEY')
-RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_PRIVATE_KEY')
-
 
 SESSION_COOKIE_SECURE = True  # Cookies solo a través de HTTPS
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # La sesión expira al cerrar el navegador
