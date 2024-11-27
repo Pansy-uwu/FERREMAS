@@ -144,15 +144,6 @@ WEBPAY = {
     'ENVIRONMENT': 'INTEGRATION',  # Usar 'PRODUCTION' para el entorno real
 }
 
-INSTALLED_APPS += ['axes']
-
-MIDDLEWARE += [
-    'axes.middleware.AxesMiddleware',
-]
-
-AXES_FAILURE_LIMIT = 5  # Máximo de intentos fallidos
-AXES_COOLOFF_TIME = 1  # Tiempo de bloqueo en horas
-
 
 
 SESSION_COOKIE_SECURE = True  # Cookies solo a través de HTTPS
