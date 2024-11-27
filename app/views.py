@@ -118,9 +118,12 @@ RECAPTCHA_PRIVATE_KEY = "6LdVEYwqAAAAAHcyEcM6TWTQGgIsS7KybGKrg9Jg"
 # Verificar reCAPTCHA
 def verify_recaptcha(token):
     url = "https://www.google.com/recaptcha/api/siteverify"
-    secret_key = os.getenv("RECAPTCHA_PRIVATE_KEY", RECAPTCHA_PRIVATE_KEY)  # Usa la variable de entorno o clave fija
+    secret_key = RECAPTCHA_PRIVATE_KEY
     response = requests.post(url, data={"secret": secret_key, "response": token})
+    if response.status_code != 200:
+        print(f"Error en reCAPTCHA: {response.text}")  # Para depurar
     return response.json()
+
 
 # Vista del Login
 def login_view(request):
@@ -138,7 +141,7 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return redirect("success")  # Cambia "success" por el nombre real de tu URL
+            return redirect("index")  # Cambia por el nombre correcto de la URL
         else:
             return render(request, "login.html", {"error": "Credenciales inválidas"})
 
