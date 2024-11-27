@@ -25,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-x3jla=!h#d1nsk7!vyb9!fg8(2k-r_xwp@ul8sck1gae1jv3&$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = False
 
 
-ALLOWED_HOSTS = ['ferremas-uhp7.onrender.com','*']
+ALLOWED_HOSTS = ['ferremas-uhp7.onrender.com']
 
 
 
