@@ -148,12 +148,12 @@ WEBPAY = {
 
 
 # Cookies de sesión
-SESSION_COOKIE_SECURE = True  # No requiere HTTPS en desarrollo
+SESSION_COOKIE_SECURE = False  # No requiere HTTPS en desarrollo
 SESSION_COOKIE_HTTPONLY = True  # Evita el acceso a la cookie desde JavaScript
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # La sesión no expira al cerrar el navegador
 
 # CSRF
-CSRF_COOKIE_SECURE = True  # No requiere HTTPS en desarrollo
+CSRF_COOKIE_SECURE = False  # No requiere HTTPS en desarrollo
 
 
 LOGOUT_REDIRECT_URL = '/'  # Cambia '/' por la URL o el nombre de la ruta a la que quieras redirigir
