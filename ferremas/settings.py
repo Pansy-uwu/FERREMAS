@@ -121,20 +121,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-# Configuración de archivos estáticos
+# URL para acceder a archivos estáticos
 STATIC_URL = '/static/'
 
-# Directorios de archivos estáticos en desarrollo
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# Directorio donde están tus archivos estáticos
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'app', 'static')  # Ajustamos la ruta a la carpeta static
+]
 
-# Directorio para los archivos estáticos en producción
+# Directorio para almacenar archivos estáticos recopilados para producción
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Configuración de WhiteNoise para servir archivos estáticos en producción
+# Configuración para usar WhiteNoise en producción
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Middleware para WhiteNoise
-MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')  # Debe ir después de SecurityMiddleware
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')  # Después de SecurityMiddleware
+
 
 
 # Default primary key field type
