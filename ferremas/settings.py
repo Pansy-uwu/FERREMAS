@@ -156,4 +156,6 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # La sesión no expira al cerrar el nave
 CSRF_COOKIE_SECURE = False  # No requiere HTTPS en desarrollo
 
 
-LOGOUT_REDIRECT_URL = '/'  # Cambia '/' por la URL o el nombre de la ruta a la que quieras redirigir
+LOGIN_REDIRECT_URL = '/'  # Redirige al inicio después del login
+LOGOUT_REDIRECT_URL = '/'  # Redirige al inicio después del logout
+
